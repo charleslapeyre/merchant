@@ -1,8 +1,15 @@
-<h1>Welcome to Chuck's Rocks and Minerals</h1>
+<h1 class="text-center">Welcome to Chuck's Rocks and Minerals</h1>
 
-<p>
+<p class="text-center">
   Come explore a fantastic collection of Rocks, Gems, and Minerals.
 </p>
+
+
+  <% if params[:cat_id] %>
+    <h3>All <%= @category.name.capitalize %></h3>
+  <% else %>
+    <h3>All Products</h3>
+  <% end %>
 
 <div class="row">
   <% @products.each do |product| %>
