@@ -4,8 +4,8 @@
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
-        <% Category.all.each do |cat| %>
-          <li><%= link_to cat.name.capitalize, shop_path(cat_id: cat.id) %></li>
+        <% Category.all.each do |category| %>
+          <li><%= link_to category.name.capitalize, shop_path(cat_id: category.id) %></li>
         <% end %>
         <li class="divider"></li>
         <li><%= link_to "All Products", shop_path %></li>
@@ -21,7 +21,21 @@
       </ul>
     </li>
   </ul>
+
+
+
+
   <ul class="nav navbar-nav navbar-right">
+  <!-- search form -->
+  <div class="pull-left">
+    <%= form_tag(shop_path, method: :get, role: "search", class: "form-inline") do %>
+      <div class="form-group">
+        <%= text_field_tag(:search, nil, placeholder: "Search Products", class:"form-control input-sm") %>
+      </div>
+      <%= submit_tag("Search", class: "btn btn-default btn-sm") %>
+    <% end %>
+  </div>
+
     <li>
       <% if user_signed_in? %>
         <!-- Account  -->
