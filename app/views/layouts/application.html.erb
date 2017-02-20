@@ -10,6 +10,11 @@
 
   <body>
     <%= render '/layouts/navbar' %>
+    <% if notice.present? %>
+      <div class="alert alert-info">
+      <%= flash.now[:notice] %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

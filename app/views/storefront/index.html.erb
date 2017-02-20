@@ -1,0 +1,53 @@
+<h1 class="text-center">Welcome to Chuck's Rocks and Minerals</h1>
+
+<p class="text-center">
+  Come explore a fantastic collection of Rocks, Gems, and Minerals.
+</p>
+
+
+  <% if params[:cat_id] %>
+    <h3>All <%= @category.name.capitalize %></h3>
+  <% else %>
+    <h3>All Products</h3>
+  <% end %>
+
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= image_tag product.avatar.url(:medium) %>
+          <h5 class="pull-right text-right">
+            <%= number_to_currency product.price %>
+            <a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>">
+              Launch demo modal
+              <h5><%= product.name %></h5>
+              <small>quick info</small>
+            </a>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><%= product.name %></h4>
+          </div>
+          <div class="modal-body">
+            <%= image_tag product.avatar.url(:medium) %>
+            <p><%= number_to_currency product.price %></p>
+            <p><%= product.description %></p>
+          </div>
+          <div class="modal-footer">
+            <p>footer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
