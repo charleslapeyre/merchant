@@ -19,12 +19,13 @@
           <%= image_tag product.avatar.url(:medium) %>
           <h5 class="pull-right text-right">
             <%= number_to_currency product.price %>
-            <a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>">
-              Launch demo modal
-              <h5><%= product.name %></h5>
-              <small>quick info</small>
-            </a>
           </h5>
+          <a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>">
+            Launch demo modal
+            <h5><%= product.name %></h5>
+            <small>quick info</small>
+          </a>
+            <%= button_to 'Add to Cart', line_items_path(product_id: product), class: 'btn btn-success btn-small' %>
         </div>
       </div>
     </div>

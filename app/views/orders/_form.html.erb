@@ -1,0 +1,16 @@
+<%= simple_form_for(@order) do |f| %>
+  <!-- show any errors -->
+  <%= f.error_notification %>
+
+  <!-- form fields -->
+  <div class="form-inputs">
+    <%= f.input :name, placeholder: 'name' %>
+    <%= f.input :address, placeholder: 'address' %>
+    <%= f.input :pay_type, collection: Order::PAYMENT_TYPES, prompt: 'Select a payment method' %>
+  </div>
+
+  <!-- submit -->
+  <div class="form-actions">
+    <%= f.submit 'place order' %>
+  </div>
+<% end %>
