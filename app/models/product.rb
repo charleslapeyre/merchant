@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :category, optional: true
   has_many :line_items
-  before_destory :ensure_not_referenced_by_any_item
+  before_destroy :ensure_not_referenced_by_any_item
 
   has_attached_file :avatar,
                     styles: { medium: "300x300#",

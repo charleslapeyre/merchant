@@ -1,6 +1,8 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav">
+
+    <!-- shop drop-down with category links -->
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
@@ -11,7 +13,12 @@
         <li><%= link_to "All Products", shop_path %></li>
       </ul>
     </li>
+
+    <!-- link to the about page -->
     <li><%= link_to 'About', about_path %></li>
+
+    <!-- backroom product management drop-down -->
+    <% if user_signed_in? %>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Backroom <span class="caret"></span></a>
       <ul class="dropdown-menu">
@@ -20,28 +27,30 @@
         <li><%= link_to "Products", admin_products_path %></li>
       </ul>
     </li>
+    <% end %>
   </ul>
 
-
-
-
+  <!-- right navbar -->
   <ul class="nav navbar-nav navbar-right">
-  <!-- search form -->
-  <div class="pull-left">
-    <%= form_tag(shop_path, method: :get, role: "search", class: "form-inline") do %>
-      <div class="form-group">
-        <%= text_field_tag(:search, nil, placeholder: "Search Products", class:"form-control input-sm") %>
-      </div>
-      <%= submit_tag("Search", class: "btn btn-default btn-sm") %>
-    <% end %>
-  </div>
 
+    <!-- search form -->
+    <div class="pull-left">
+      <%= form_tag(shop_path, method: :get, role: "search", class: "form-inline") do %>
+        <div class="form-group">
+          <%= text_field_tag(:search, nil, placeholder: "Search Products", class:"form-control input-sm") %>
+        </div>
+        <%= submit_tag("Search", class: "btn btn-default btn-sm") %>
+      <% end %>
+    </div>
+
+    <!-- login/register -->
     <li>
       <% if user_signed_in? %>
         <!-- Account  -->
         <li><%= link_to 'Account', edit_user_registration_path %></li>
         <!-- Log out -->
         <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to fa_icon('shopping-cart', text: 'Your Cart'), edit_cart_path %></li>
       <% else %>
         <!-- Sign in -->
         <li><%= link_to 'Login', new_user_session_path %></li>
